@@ -1,0 +1,96 @@
+:root {
+  --chicle: #ff7eb6;
+  --lila: #b99cff;
+  --durazno: #ffc9b8;
+  --crema: #fff1f8;
+  --ciruela: #55205e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: linear-gradient(135deg, #ffd6ec, #e4d4ff 55%, #ffe3d6);
+  background-size: 200% 200%;
+  animation: degradado 12s ease-in-out infinite alternate;
+  color: var(--ciruela);
+  font-family: "Fredoka", system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+@keyframes degradado { to { background-position: 100% 100%; } }
+
+/* Corazones y brillos flotando */
+.flota { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.flota span { position: absolute; bottom: -40px; will-change: transform; }
+
+main { position: relative; z-index: 1; padding: 24px; perspective: 1000px; }
+
+.carnet {
+  position: relative;
+  width: min(830px, 93vw);
+  padding: 50px 40px 34px;
+  border-radius: 36px;
+  background: rgba(255, 255, 255, .62);
+  border: 3px solid #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(185, 120, 200, .35), inset 0 0 0 6px rgba(255,126,182,.12);
+  text-align: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.carnet > * { transform: translateZ(30px); }
+
+.lazo {
+  position: absolute; top: -26px; left: 50%;
+  width: 56px; height: 56px; margin-left: -28px;
+  font-size: 2.6rem; line-height: 56px; text-align: center;
+  animation: lazo 3s ease-in-out infinite;
+}
+@keyframes lazo { 50% { transform: translateZ(40px) rotate(10deg) scale(1.1); } }
+
+.escuela {
+  display: inline-block;
+  background: var(--lila); color: #fff;
+  padding: 6px 16px; border-radius: 999px;
+  font-weight: 500; font-size: .95rem;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  line-height: 1.25;
+  color: var(--chicle);
+  text-shadow: 3px 3px 0 #fff, 5px 5px 0 rgba(185,156,255,.5);
+  margin-bottom: 24px;
+}
+h1 .letra { display: inline-block; }
+h1 .espacio { display: inline-block; width: .3em; }
+
+.matricula {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #fff; padding: 10px 22px; border-radius: 999px;
+  border: 2px dashed var(--chicle);
+  transform: rotate(-2deg);
+}
+.matricula span { font-size: .9rem; opacity: .75; }
+.matricula strong { font-size: 1.5rem; font-weight: 600; color: var(--ciruela); }
+
+.escribe { margin-top: 24px; min-height: 1.6em; font-size: 1.05rem; }
+.cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--chicle); vertical-align: -3px; margin-left: 2px; animation: parpadeo 1s steps(1) infinite; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+/* Imagen de Pucca  */
+.mascota {
+  position: absolute; right: -34px; bottom: -42px;
+  width: clamp(96px, 26vw, 140px); height: auto;
+  cursor: pointer; user-select: none;
+  filter: drop-shadow(0 8px 10px rgba(85, 32, 94, .3));
+  transform: translateZ(60px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .lazo, .cursor { animation: none; }
+}
